@@ -20,6 +20,11 @@ export const Logger = winston.createLogger({
 		prettyJson
 	),
 	transports: [
-		new winston.transports.Console({})
+		new winston.transports.Console({}),
+		new (winston.transports.File)({
+			name: 'info-file',
+			filename: './logs/info-file.log',
+			level: 'info'
+		})
 	]
 });
