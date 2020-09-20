@@ -4,6 +4,8 @@
 build/
 node_modules/
 
+personal.md
+
 .env
 success-*.png
 

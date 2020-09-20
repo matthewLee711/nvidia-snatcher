@@ -14,6 +14,18 @@ const transporter = nodemailer.createTransport({
 	}
 });
 
+/**
+const transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: email.username,
+		pass: email.password
+	}
+});
+
+
+ */
+
 const mailOptions: Mail.Options = {
 	from: email.username,
 	to: email.username,
