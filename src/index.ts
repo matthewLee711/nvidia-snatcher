@@ -13,7 +13,7 @@ async function main() {
 	const browser = await puppeteer.launch({
 		headless: true,
 		executablePath: process.env.CHROMIUM_PATH,
-		args: ['--no-sandbox'],
+		args: ['--no-sandbox', '--disable-dev-shm-usage'],
 	});
 
 	for (const store of Stores) {

@@ -1,5 +1,5 @@
 # Grab official node image
-FROM node:14.11.0-alpine3.10
+FROM node:14-alpine3.12
 
 # Install headless chrome
 RUN apk update && apk add --no-cache nmap && \
@@ -7,11 +7,24 @@ RUN apk update && apk add --no-cache nmap && \
   echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
   apk update && \
   apk add --no-cache \
-  chromium \
+  "chromium>81" \
   harfbuzz \
-  "freetype>2.8" \
+  ca-certificates \
+  freetype \
+  freetype-dev \
   ttf-freefont \
   nss
+
+# RUN apk add --no-cache \
+#   "chromium=77.0.3865.120-r0" \
+#   nss \
+#   freetype \
+#   freetype-dev \
+#   harfbuzz \
+#   ca-certificates \
+#   ttf-freefont \
+#   nodejs \
+#   yarn
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV CHROMIUM_PATH=/usr/bin/chromium-browser
@@ -25,7 +38,6 @@ COPY package.json package.json
 
 # Install and clean cache
 RUN npm install
-# RUN npm install && npm cache clean
 
 # Copy all files into working directory
 COPY . .
